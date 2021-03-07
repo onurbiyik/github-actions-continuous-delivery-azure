@@ -17,6 +17,10 @@ env:
 
 jobs:
   build:
+    if: contains(github.event.pull_request.labels.*.name, 'stage')
     runs-on: ubuntu-latest
     
-    if: contains(github.event.pull_request.labels.*.name, 'stage')
+    steps:
+      - uses: actions/checkout@v1
+      - name: npm install and build webpack
+        run : 

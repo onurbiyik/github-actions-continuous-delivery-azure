@@ -7,13 +7,7 @@ on:
 env:
   DOCKER_IMAGE_NAME: onurbiyik-azure-ttt
   IMAGE_REGISTRY_URL: docker.pkg.github.com
-  #################################################
-  ### USER PROVIDED VALUES ARE REQUIRED BELOW   ###
-  #################################################
-  #################################################
-  ### REPLACE USERNAME WITH GH USERNAME         ###
   AZURE_WEBAPP_NAME: onurbiyik-ttt-app
-  #################################################
 
 jobs:
   build:
@@ -23,4 +17,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: npm install and build webpack
-        run : 
+        run: |
+          npm install
+          npm build
+      - uses: actions/upload-artifact@main
+        with:
+          name: webpack artifacts
+          path: public/
